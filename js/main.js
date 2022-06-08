@@ -91,7 +91,7 @@ const getCommentNumbers = (number) => {
 
 const createPictureDescription = () => ({
   id: uniqueIdNumbers.shift(),
-  url: uniqueUrls.shift(),
+  url: `photos/${uniqueUrls.shift()}.jpg`,
   description: getRandomArrayElement(DESCRIPTION),
   likes: getRandomNumber(15, 200),
   comments: getCommentNumbers(getRandomArrayElement(uniqueCommentCount)),
