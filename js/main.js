@@ -16,7 +16,6 @@ const getRandomNumber = (startValue, endValue) => {
     default: return Math.floor(Math.random() * (firstNumber - secondNumber + 1)) + secondNumber;
   }
 };
-getRandomNumber();
 
 const TEST_DATA_OBJECTS = 25;
 
