@@ -48,14 +48,13 @@ const DESCRIPTION = [
 
 const getRandomArrayElement = (element) => element[getRandomNumber(0, element.length-1)];
 
-// eslint-disable-next-line prefer-const
-let uniqueIdNumbers = [];
-// eslint-disable-next-line prefer-const
-let uniqueUrls = [];
-// eslint-disable-next-line prefer-const
-let uniqueCommentIds = [];
-// eslint-disable-next-line prefer-const
-let uniqueCommentCount = [];
+const uniqueIdNumbers = [];
+
+const uniqueUrls = [];
+
+const uniqueCommentIds = [];
+
+const uniqueCommentCount = [];
 
 const createUniqueNumbers = (neededNumber, array) => {
   while (array.length < neededNumber) {
@@ -79,11 +78,9 @@ const createComment = () => ({
 });
 
 const getCommentNumbers = (number) => {
-  // eslint-disable-next-line prefer-const
-  let finalCommentsArray = [];
+  const finalCommentsArray = [];
   for (let i = 0; i < number; i++) {
-    // eslint-disable-next-line prefer-const
-    let comment = createComment();
+    const comment = createComment();
     finalCommentsArray.push(comment);
   }
   return finalCommentsArray;
