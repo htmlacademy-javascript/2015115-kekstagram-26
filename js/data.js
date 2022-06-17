@@ -29,13 +29,13 @@ const DESCRIPTION = [
   'Памагити',
 ];
 
-const uniqueIdNumbers = [];
+const uniqueIdNumbers = createUniqueNumbers(25);
 
-const uniqueUrls = [];
+const uniqueUrls = createUniqueNumbers(25);
 
-const uniqueCommentIds = [];
+const uniqueCommentIds = createUniqueNumbers(100);
 
-const uniqueCommentCount = [];
+const uniqueCommentCount = createUniqueNumbers(7);
 
 const createComment = () => ({
   id: uniqueCommentIds.shift(),
@@ -62,10 +62,5 @@ const createPictureDescription = () => ({
 });
 
 const createPicture = () => Array.from({length: TEST_DATA_OBJECTS}, createPictureDescription);
-
-createUniqueNumbers(25, uniqueIdNumbers);
-createUniqueNumbers(25, uniqueUrls);
-createUniqueNumbers(100, uniqueCommentIds);
-createUniqueNumbers(7, uniqueCommentCount);
 
 export {createPicture};
