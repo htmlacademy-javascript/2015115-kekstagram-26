@@ -17,13 +17,15 @@ const getRandomNumber = (startValue, endValue) => {
   }
 };
 
-const createUniqueNumbers = (neededNumber, array) => {
-  while (array.length < neededNumber) {
+const createUniqueNumbers = (neededNumber) => {
+  const container = new Array();
+  while (container.length < neededNumber) {
     const randomNumber = getRandomNumber(1, neededNumber);
-    if (!array.includes(randomNumber)) {
-      array.push(randomNumber);
+    if (!container.includes(randomNumber)) {
+      container.push(randomNumber);
     }
   }
+  return container;
 };
 
 const getRandomArrayElement = (element) => element[getRandomNumber(0, element.length-1)];
