@@ -20,4 +20,8 @@ const getThumbnailRenderedPictures = () => {
   return usersPicturesContainer;
 };
 
+export {usersPicturesContainer};
+
+export {userData};
+
 export {getThumbnailRenderedPictures};
