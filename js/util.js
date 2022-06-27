@@ -1,5 +1,11 @@
-const checkStringLength = (string, maxLength) => !(string.length > maxLength);
-checkStringLength('Keks', 5);
+const validateLength = (data, number) => data.length <= number;
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const findIdenticalItem = (array) => {
+  const tempArray = [...new Set(array)];
+  return JSON.stringify(array) === JSON.stringify(tempArray);
+};
 
 const getRandomNumber = (startValue, endValue) => {
   if (startValue < 0 || endValue < 0) {
@@ -31,5 +37,6 @@ const createUniqueNumbers = (neededNumber) => {
 const getRandomArrayElement = (element) => element[getRandomNumber(0, element.length-1)];
 
 export {getRandomNumber, createUniqueNumbers, getRandomArrayElement};
+export {isEscapeKey, validateLength, findIdenticalItem};
 
 

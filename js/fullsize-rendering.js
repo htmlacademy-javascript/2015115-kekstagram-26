@@ -1,31 +1,22 @@
 import { usersPicturesContainer } from './thumbnail-rendering.js';
-
 import { userData } from './thumbnail-rendering.js';
+import { isEscapeKey } from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
-
 const fullSizePictureImage = bigPicture.querySelector('.big-picture__img').querySelector('img');
-
 const bigPictureCloseButton = bigPicture.querySelector('.big-picture__cancel');
-
 const bodyContainer = document.querySelector('body');
-
 const commentsCount = bigPicture.querySelector('.comments-count');
-
 const likesCount = bigPicture.querySelector('span.likes-count');
-
 const allSocialComments = bigPicture.querySelector('.social__comments');
-
 const photoDescription = bigPicture.querySelector('.social__caption');
-
 const socialCommentsCounter = bigPicture.querySelector('.social__comment-count');
-
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 
-const getClosedByKeyPicture = (evt) => {
-  if(evt.key === 'Escape') {
-    bigPicture.classList.add('hidden');
-    bodyContainer.classList.remove('modal-open');
+const bigPictureEscapeHandler = (evt) => {
+  if(isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeBigPicture();
   }
 };
 
@@ -42,6 +33,8 @@ const showLargeImage = () => {
 };
 
 function closeBigPicture () {
+  bigPictureCloseButton.removeEventListener('click', closeBigPicture);
+  document.removeEventListener('keydown', bigPictureEscapeHandler);
   bodyContainer.classList.remove('modal-open');
   bigPicture.classList.add('hidden');
 }
@@ -76,7 +69,7 @@ function openBigPicture (evt) {
     bigPicture.classList.remove('hidden');
     bodyContainer.classList.add('modal-open');
     bigPictureCloseButton.addEventListener('click', closeBigPicture);
-    document.addEventListener('keydown', getClosedByKeyPicture);
+    document.addEventListener('keydown', bigPictureEscapeHandler);
     removeCommentsCounter();
     removeCommentsLoader();
     removeDefaultSocialComments();

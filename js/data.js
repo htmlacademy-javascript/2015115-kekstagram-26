@@ -30,11 +30,8 @@ const DESCRIPTION = [
 ];
 
 const uniqueIdNumbers = createUniqueNumbers(25);
-
 const uniqueUrls = createUniqueNumbers(25);
-
 const uniqueCommentIds = createUniqueNumbers(100);
-
 const uniqueCommentCount = createUniqueNumbers(7);
 
 const createComment = () => ({

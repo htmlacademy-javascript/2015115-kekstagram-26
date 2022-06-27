@@ -1,11 +1,8 @@
 import { createPicture } from './data.js';
 
 const usersPicturesContainer = document.querySelector('.pictures');
-
 const userPictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-
 const userData = createPicture();
-
 const userDataFragment = document.createDocumentFragment();
 
 const getThumbnailRenderedPictures = () => {
@@ -20,8 +17,5 @@ const getThumbnailRenderedPictures = () => {
   return usersPicturesContainer;
 };
 
-export {usersPicturesContainer};
-
-export {userData};
-
+export {usersPicturesContainer, userData};
 export {getThumbnailRenderedPictures};
