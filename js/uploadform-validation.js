@@ -1,6 +1,4 @@
-import { isEscapeKey } from './util.js';
-import { validateLength } from './util.js';
-import { findIdenticalItem } from './util.js';
+import { isEscapeKey, validateLength, findIdenticalItem } from './util.js';
 
 const wholeFormElement = document.querySelector('.img-upload__wrapper');
 const form = wholeFormElement.querySelector('.img-upload__form');
