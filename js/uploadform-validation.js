@@ -1,4 +1,7 @@
 import { isEscapeKey, validateLength, findIdenticalItem } from './util.js';
+import { scalesControlButtonHandler, explodeUserPictureSettings } from './picture-scale.js';
+import { scaleControlBiggerElement, scaleControlSmallerElement, getScaleIncrease, getScaleDecrease } from './picture-scale.js';
+import { inputEffectsRadioElementsHandler, resetImgUploadSettings } from './slider-effect.js';
 
 const wholeFormElement = document.querySelector('.img-upload__wrapper');
 const form = wholeFormElement.querySelector('.img-upload__form');
@@ -30,7 +33,7 @@ function closeButtonOverlayElementHandler (evt) {
 
 const validateHashtagInput = () => {
   const rawHashtagFieldValues = hashtagFieldElement.value.toLowerCase().trim().replace(/\s/g, ' ').split(' ');
-  const finalHashtagValues = new Array();
+  const finalHashtagValues = [];
   rawHashtagFieldValues.forEach( (element) => {
     if (element !== '') {
       finalHashtagValues.push(element);
@@ -80,6 +83,10 @@ function overlayElementHandler (evt) {
   document.addEventListener('keydown', closeButtonOverlayElementHandler);
   hashtagFieldElement.addEventListener('input', addPristineFormValidation);
   form.addEventListener('submit', getTempConsoleMessage);
+  scalesControlButtonHandler(scaleControlBiggerElement, getScaleIncrease);
+  scalesControlButtonHandler(scaleControlSmallerElement, getScaleDecrease);
+  inputEffectsRadioElementsHandler();
+  resetImgUploadSettings();
 }
 
 const removeEscapeFromInputFields = (element) => {
@@ -105,9 +112,12 @@ function closeUploadOverlay () {
   imgInputElement.removeEventListener('click', overlayElementHandler);
   hashtagFieldElement.removeEventListener('input', addPristineFormValidation);
   form.removeEventListener('submit', getTempConsoleMessage);
+  scaleControlSmallerElement.removeEventListener('click', getScaleDecrease);
+  scaleControlBiggerElement.removeEventListener('click', getScaleIncrease);
   explodeInputFieldsValues();
+  explodeUserPictureSettings();
   showImgUploader();
 }
 
-export {showImgUploader};
+export { showImgUploader };
 

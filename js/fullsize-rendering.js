@@ -1,6 +1,5 @@
-import { usersPicturesContainer } from './thumbnail-rendering.js';
-import { userData } from './thumbnail-rendering.js';
-import { isEscapeKey } from './util.js';
+import { usersPicturesContainer, userData } from './thumbnail-rendering.js';
+import { isEscapeKey, getCommentDeclension } from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const fullSizePictureImage = bigPicture.querySelector('.big-picture__img').querySelector('img');
@@ -13,10 +12,9 @@ const photoDescription = bigPicture.querySelector('.social__caption');
 const socialCommentsCounter = bigPicture.querySelector('.social__comment-count');
 const commentsLoaderButtonElement = bigPicture.querySelector('.comments-loader');
 
+const COMMENTS_DECLENTION = ['комментария', 'комментариев'];
 const COMMENTS_NUMBER = 5;
-// eslint-disable-next-line no-unused-vars
-let socialCommentsCounterDeclension = socialCommentsCounter.childNodes[4];
-let actualComments = new Array();
+let actualComments = [];
 let commentsCountTextContent = commentsCount.textContent;
 let commentsCounter = 0;
 
@@ -36,7 +34,7 @@ const showLargeImage = () => {
 };
 
 const getAllUrlsFromUserData = (data) => {
-  const urls = new Array();
+  const urls = [];
   data.forEach( (obj, index) => {
     obj = data[index];
     const objUrl = obj.url;
@@ -84,7 +82,7 @@ const explodeSocialCommentCounter = () => {
 };
 
 const getCommentsNumber = (count, totalComments) => {
-  const fourthNodeElement = totalComments === 1 ? socialCommentsCounterDeclension = 'комментария' : socialCommentsCounterDeclension = 'комментариев';
+  const fourthNodeElement = getCommentDeclension(totalComments, COMMENTS_DECLENTION);
   socialCommentsCounter.innerHTML = `${count} из <span class="comments-count">${totalComments}</span> ${fourthNodeElement}`;
 };
 
@@ -105,7 +103,7 @@ const getCommentStack = () => {
 
 function openBigPicture (evt) {
   const clickedElement = evt.target;
-  if (clickedElement.closest('img')) {
+  if ( clickedElement.closest('img') ) {
     bigPicture.classList.remove('hidden');
     bodyContainer.classList.add('modal-open');
     bigPictureCloseButton.addEventListener('click', closeBigPicture);
@@ -121,10 +119,11 @@ function getFullsizedPicture (evt) {
   const selectedPost = evt.target.src;
   const selectedUrl = getCurrentUrlFromUserData(getAllUrlsFromUserData(userData), selectedPost);
   fullSizePictureImage.src = selectedUrl;
-  likesCount.textContent = userData.find( (picture) => picture.url === selectedUrl).likes;
-  commentsCountTextContent = userData.find( (picture) => picture.url === selectedUrl).comments.length;
-  actualComments = userData.find( (picture) => picture.url === selectedUrl).comments.slice();
-  photoDescription.textContent = userData.find( (picture) => picture.url === selectedUrl).description;
+  const { likes, comments, description } = userData.find( (picture) => picture.url === selectedUrl);
+  likesCount.textContent = likes;
+  commentsCountTextContent = comments.length;
+  actualComments = comments.slice();
+  photoDescription.textContent = description;
   getCommentStack(actualComments);
 }
 
