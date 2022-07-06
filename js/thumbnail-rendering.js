@@ -6,13 +6,13 @@ const userData = createPicture();
 const userDataFragment = document.createDocumentFragment();
 
 const getThumbnailRenderedPictures = () => {
-  userData.forEach((picture) => {
+  userData.forEach( (picture) => {
     const userPicture = userPictureTemplate.cloneNode(true);
     userPicture.querySelector('.picture__img').src = picture.url;
     userPicture.querySelector('.picture__likes').textContent = picture.likes;
     userPicture.querySelector('.picture__comments').textContent = picture.comments.length;
     userDataFragment.append(userPicture);
-  });
+  } );
   usersPicturesContainer.append(userDataFragment);
   return usersPicturesContainer;
 };
