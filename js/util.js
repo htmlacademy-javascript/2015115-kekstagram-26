@@ -1,3 +1,28 @@
+const ALERT_SHOW_TIME = 3000;
+
+const onFailMainLoad = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '31%';
+  alertContainer.style.top = '40%';
+  alertContainer.style.marginLeft = '-100 px';
+  alertContainer.style.marginTop = '-75px';
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '18px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'grey';
+  alertContainer.style.borderRadius = '40px';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
 const validateLength = (data, number) => data.length <= number;
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
@@ -11,7 +36,7 @@ const getToFixedNumber = (number) => (number * 0.01).toFixed(2);
 
 const getCommentDeclension = (totalComments, data) => {
   totalComments = Math.abs(totalComments) % 100;
-  const number = totalComments % 10;
+  const number = totalComments % 100;
   return number === 1 ? data[0] : data[1];
 };
 
@@ -44,7 +69,7 @@ const createUniqueNumbers = (neededNumber) => {
 
 const getRandomArrayElement = (element) => element[getRandomNumber(0, element.length-1)];
 
-export {getRandomNumber, createUniqueNumbers, getRandomArrayElement};
+export {getRandomNumber, createUniqueNumbers, getRandomArrayElement, onFailMainLoad};
 export {isEscapeKey, validateLength, findIdenticalItem, getCommentDeclension, getToFixedNumber};
 
 

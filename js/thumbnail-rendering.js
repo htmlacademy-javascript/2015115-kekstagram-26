@@ -1,11 +1,11 @@
-import { createPicture } from './data.js';
+//import { createPicture } from './data.js';
 
 const usersPicturesContainer = document.querySelector('.pictures');
 const userPictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const userData = createPicture();
+//const userData = createPicture();
 const userDataFragment = document.createDocumentFragment();
 
-const getThumbnailRenderedPictures = () => {
+const getThumbnailRenderedPictures = (userData) => {
   userData.forEach( (picture) => {
     const userPicture = userPictureTemplate.cloneNode(true);
     userPicture.querySelector('.picture__img').src = picture.url;
@@ -17,5 +17,5 @@ const getThumbnailRenderedPictures = () => {
   return usersPicturesContainer;
 };
 
-export {usersPicturesContainer, userData};
+export {usersPicturesContainer}; //export {userData};
 export {getThumbnailRenderedPictures};
