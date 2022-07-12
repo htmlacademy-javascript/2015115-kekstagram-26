@@ -1,4 +1,5 @@
-import { usersPicturesContainer, userData } from './thumbnail-rendering.js';
+import { userData } from './server.js';
+import { usersPicturesContainer } from './thumbnail-rendering.js';
 import { isEscapeKey, getCommentDeclension } from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');

@@ -1,4 +1,4 @@
-import { getRandomArrayElement, createUniqueNumbers, getRandomNumber } from './util.js';
+/*import { getRandomArrayElement, createUniqueNumbers, getRandomNumber } from './util.js';
 
 const TEST_DATA_OBJECTS = 25;
 
@@ -60,4 +60,5 @@ const createPictureDescription = () => ({
 
 const createPicture = () => Array.from({length: TEST_DATA_OBJECTS}, createPictureDescription);
 
-export {createPicture};
+export {createPicture};*/
+

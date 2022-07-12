@@ -4,7 +4,7 @@ const imgUploadScaleElement = document.querySelector('.img-upload__scale');
 const scaleControlSmallerElement = imgUploadScaleElement.querySelector('.scale__control--smaller');
 const scaleControlBiggerElement = imgUploadScaleElement.querySelector('.scale__control--bigger');
 const scaleControlValue = imgUploadScaleElement.querySelector('.scale__control--value');
-const imgUploadPreview = document.querySelector('.img-upload__preview');
+const imgUploadPreview = document.querySelector('.img-upload__preview').querySelector('img');
 
 const COUNTER_STEP = 25;
 const MAXIMUM_SCALE_VALUE = 100;

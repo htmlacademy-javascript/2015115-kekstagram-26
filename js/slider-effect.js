@@ -139,9 +139,9 @@ const inputEffectsRadioElementsHandler = () => {
   inputEffectsRadioElements.forEach( (radio) => {
     radio.addEventListener('change', () => {
       const newValue = radio.value;
-      const previousValue = imgUploadPreview.classList[imgUploadPreview.classList.length-1];
+      const previousValue = imgUploadPreview.classList[0];
       imgUploadPreview.classList.remove( `${ previousValue }` );
-      imgUploadPreview.classList.add( 'img-upload__preview', `effects__preview--${ newValue }` );
+      imgUploadPreview.classList.add( `effects__preview--${ newValue }` );
       updateSliderOptions(newValue);
     });
   } );
@@ -149,7 +149,7 @@ const inputEffectsRadioElementsHandler = () => {
 
 const resetImgUploadSettings = () => {
   defaultPictureSetting.checked = true;
-  const classNames = imgUploadPreview.classList[1];
+  const classNames = imgUploadPreview.classList[0];
   imgUploadPreview.classList.remove(`${ classNames }`);
   sliderElement.style.display = 'none';
 };
