@@ -1,16 +1,14 @@
 import { onFailMainLoad } from './util.js';
-import { getData, getRawDataFromServer } from './server.js';
-import { getThumbnailRenderedPictures } from './thumbnail-rendering.js';
+import { getData, getRecievedData } from './server.js';
 import { showLargeImage } from './fullsize-rendering.js';
-import { showImgUploader } from './uploadform-validation.js';
-//import { setFormSubmit } from './uploadform-validation.js';
+import { showImgUploader } from './uploadform-modal.js';
 
-getData( (pictures)  => {
-  getThumbnailRenderedPictures( getRawDataFromServer(pictures) );
-}, onFailMainLoad);
+const getMainPage = () => {
+  getData( (pictures)  => {
+    getRecievedData(pictures);
+  }, onFailMainLoad);
+  showLargeImage();
+  showImgUploader();
+};
 
-showLargeImage();
-showImgUploader();
-
-//setFormSubmit();
-
+getMainPage();

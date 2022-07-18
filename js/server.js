@@ -1,11 +1,16 @@
+import { getUserData } from './fullsize-rendering.js';
+import { getThumbnailRenderedPictures } from './thumbnail-rendering.js';
+import { showFilters, getDataForFilters, useFilters } from './filters.js';
+
 const FROM_SERVER_DATA = 'https://26.javascript.pages.academy/kekstagram/data';
 const TO_SERVER_DATA = 'https://26.javascript.pages.academy/kekstagram';
 
-let userData;
-
-const getRawDataFromServer = (data) => {
-  userData = data;
-  return userData;
+const getRecievedData = (data) => {
+  getUserData(data);
+  getDataForFilters(data);
+  getThumbnailRenderedPictures(data);
+  setTimeout(showFilters, 300);
+  useFilters();
 };
 
 const getData = (onSuccess, onFail) => {
@@ -42,5 +47,5 @@ const sendData = (onSuccess, onFail, userForm) => {
       onFail();
     });
 };
-export { getRawDataFromServer, userData };
-export { getData, sendData };
+
+export { getData, sendData, getRecievedData };

@@ -56,20 +56,29 @@ const getRandomNumber = (startValue, endValue) => {
   }
 };
 
-const createUniqueNumbers = (neededNumber) => {
-  const container = [];
-  while (container.length < neededNumber) {
-    const randomNumber = getRandomNumber(1, neededNumber);
-    if ( !container.includes(randomNumber) ) {
-      container.push(randomNumber);
-    }
+const shuffle = (arr) => {
+  let j, temp;
+  for(let i = arr.length - 1; i > 0; i--) {
+    j = Math.floor( Math.random() * (i + 1) );
+    temp = arr[j];
+    arr[j] = arr[i];
+    arr[i] = temp;
   }
-  return container;
+  return arr;
 };
+
+const debounce = (cb, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout( () => cb.apply(this, rest), timeoutDelay);
+  };
+};
+
 
 const getRandomArrayElement = (element) => element[getRandomNumber(0, element.length-1)];
 
-export {getRandomNumber, createUniqueNumbers, getRandomArrayElement, onFailMainLoad};
-export {isEscapeKey, validateLength, findIdenticalItem, getCommentDeclension, getToFixedNumber};
+export { getRandomNumber, getRandomArrayElement, onFailMainLoad, shuffle, debounce };
+export { isEscapeKey, validateLength, findIdenticalItem, getCommentDeclension, getToFixedNumber };
 
 
