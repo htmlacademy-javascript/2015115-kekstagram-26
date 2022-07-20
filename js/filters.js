@@ -26,7 +26,7 @@ const imgFiltersButtonsChangeHandler = (evt) => {
   switch (currentButton.id) {
     case 'filter-random':
       removePictureNodesFromFilter();
-      debounce(getThumbnailRenderedPictures( shuffle(forFiltersData.slice(RANDOM_PICTURES_NUMBER) )  ), RERENDER_DELAY);
+      debounce(getThumbnailRenderedPictures( shuffle(forFiltersData).slice(0, RANDOM_PICTURES_NUMBER) ), RERENDER_DELAY);
       break;
     case 'filter-discussed':
       removePictureNodesFromFilter();
@@ -54,3 +54,5 @@ const useFilters = () => {
 };
 
 export { showFilters, useFilters, getDataForFilters };
+
+/* debounce(getThumbnailRenderedPictures( shuffle(forFiltersData.slice(RANDOM_PICTURES_NUMBER) )  ), RERENDER_DELAY); */
