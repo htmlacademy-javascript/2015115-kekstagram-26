@@ -155,4 +155,4 @@ const resetImgUploadSettings = () => {
 };
 
 export { inputEffectsRadioElementsHandler, resetImgUploadSettings };
-
+export { sliderInputValueElement, sliderElement, inputEffectsRadioElements };

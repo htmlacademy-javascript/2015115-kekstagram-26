@@ -1,4 +1,3 @@
-import { userData } from './server.js';
 import { usersPicturesContainer } from './thumbnail-rendering.js';
 import { isEscapeKey, getCommentDeclension } from './util.js';
 
@@ -15,9 +14,14 @@ const commentsLoaderButtonElement = bigPicture.querySelector('.comments-loader')
 
 const COMMENTS_DECLENTION = ['комментария', 'комментариев'];
 const COMMENTS_NUMBER = 5;
+let userData;
 let actualComments = [];
 let commentsCountTextContent = commentsCount.textContent;
 let commentsCounter = 0;
+
+const getUserData = (data) => {
+  userData = data;
+};
 
 const bigPictureEscapeHandler = (evt) => {
   if( isEscapeKey(evt) ) {
@@ -137,5 +141,5 @@ function closeBigPicture () {
   explodeSocialCommentCounter();
 }
 
-export {showLargeImage};
+export { showLargeImage, getUserData };
 
