@@ -1,4 +1,6 @@
 const ALERT_SHOW_TIME = 3000;
+const CONVERT_NUMBER_TO_DECIMAL = 0.01;
+const RANGE_LIMIT = 1;
 
 const onFailMainLoad = (message) => {
   const alertContainer = document.createElement('div');
@@ -32,7 +34,7 @@ const findIdenticalItem = (array) => {
   return JSON.stringify(array) === JSON.stringify(tempArray);
 };
 
-const getToFixedNumber = (number) => (number * 0.01).toFixed(2);
+const getToFixedNumber = (number) => (number * CONVERT_NUMBER_TO_DECIMAL).toFixed(2);
 
 const getCommentDeclension = (totalComments, data) => {
   totalComments = Math.abs(totalComments) % 100;
@@ -47,12 +49,12 @@ const getRandomNumber = (startValue, endValue) => {
   const firstNumber = Math.ceil(startValue);
   const secondNumber = Math.floor(endValue);
   if (firstNumber < secondNumber) {
-    return Math.floor( Math.random() * (secondNumber - firstNumber + 1) ) + firstNumber;
+    return Math.floor( Math.random() * (secondNumber - firstNumber + RANGE_LIMIT) ) + firstNumber;
   }
   switch(firstNumber) {
     case secondNumber:
       return firstNumber;
-    default: return Math.floor( Math.random() * (firstNumber - secondNumber + 1) ) + secondNumber;
+    default: return Math.floor( Math.random() * (firstNumber - secondNumber + RANGE_LIMIT) ) + secondNumber;
   }
 };
 

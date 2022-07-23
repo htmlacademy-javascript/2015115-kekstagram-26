@@ -12,15 +12,15 @@ const photoDescription = bigPicture.querySelector('.social__caption');
 const socialCommentsCounter = bigPicture.querySelector('.social__comment-count');
 const commentsLoaderButtonElement = bigPicture.querySelector('.comments-loader');
 
-const COMMENTS_DECLENTION = ['комментария', 'комментариев'];
+const DECLENTIONS = ['комментария', 'комментариев'];
 const COMMENTS_NUMBER = 5;
-let userData;
+let usersData;
 let actualComments = [];
 let commentsCountTextContent = commentsCount.textContent;
 let commentsCounter = 0;
 
 const getUserData = (data) => {
-  userData = data;
+  usersData = data;
 };
 
 const bigPictureEscapeHandler = (evt) => {
@@ -87,7 +87,7 @@ const explodeSocialCommentCounter = () => {
 };
 
 const getCommentsNumber = (count, totalComments) => {
-  const fourthNodeElement = getCommentDeclension(totalComments, COMMENTS_DECLENTION);
+  const fourthNodeElement = getCommentDeclension(totalComments, DECLENTIONS);
   socialCommentsCounter.innerHTML = `${count} из <span class="comments-count">${totalComments}</span> ${fourthNodeElement}`;
 };
 
@@ -122,9 +122,9 @@ function openBigPicture (evt) {
 
 function getFullsizedPicture (evt) {
   const selectedPost = evt.target.src;
-  const selectedUrl = getCurrentUrlFromUserData(getAllUrlsFromUserData(userData), selectedPost);
+  const selectedUrl = getCurrentUrlFromUserData(getAllUrlsFromUserData(usersData), selectedPost);
   fullSizePictureImage.src = selectedUrl;
-  const { likes, comments, description } = userData.find( (picture) => picture.url === selectedUrl);
+  const { likes, comments, description } = usersData.find( (picture) => picture.url === selectedUrl);
   likesCount.textContent = likes;
   commentsCountTextContent = comments.length;
   actualComments = comments.slice();
