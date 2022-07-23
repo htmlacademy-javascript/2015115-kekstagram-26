@@ -6,6 +6,19 @@ const sliderInputValueElement = sliderElementContainer.querySelector('.effect-le
 const inputEffectsRadioElements = document.querySelectorAll('.effects__radio');
 const defaultPictureSetting = document.querySelector('#effect-none');
 
+const DEFAULT_MIN_RANGE_VALUE = 0;
+const DEFAULT_MAX_RANGE_VALUE = 1;
+const DEFAULT_START_VALUE = 1;
+const DEFAULT_STEP_VALUE = 0.1;
+const MARVIN_MAX_RANGE_VALUE = 100;
+const MARVIN_STEP_VALUE = 1;
+const MARVIN_START_VALUE = 100;
+const PHOBOS_MAX_RANGE_VALUE = 3;
+const PHOBOS_START_VALUE = 3;
+const HEAT_MIN_RANGE_VALUE = 1;
+const HEAT_MAX_RANGE_VALUE = 3;
+const HEAT_START_VALUE = 3;
+
 sliderInputValueElement.value = 1;
 
 const PhotoEffect = {
@@ -19,11 +32,11 @@ const PhotoEffect = {
 
 noUiSlider.create(sliderElement, {
   range: {
-    min: 0,
-    max: 1,
+    min: DEFAULT_MIN_RANGE_VALUE,
+    max: DEFAULT_MAX_RANGE_VALUE,
   },
-  start: 1,
-  step: 0.1,
+  start: DEFAULT_START_VALUE,
+  step: DEFAULT_STEP_VALUE,
   connect: 'lower',
   format: {
     to: function (value) {
@@ -37,6 +50,16 @@ noUiSlider.create(sliderElement, {
     },
   },
 });
+
+const setSliderOptions = (min, max, step, start) =>
+  sliderElement.noUiSlider.updateOptions({
+    range: {
+      min: min,
+      max: max,
+    },
+    step: step,
+    start: start,
+  });
 
 const addFilterStyle = (filterName, value) => {
   let styleFilter;
@@ -72,65 +95,32 @@ const connectSliderWithInput = (currentEffect) => {
 
 const updateSliderOptions = (currentEffect) => {
   sliderElement.style.display = 'block';
+  sliderElementContainer.classList.remove('hidden');
   switch (currentEffect) {
     case PhotoEffect.CHROME:
-      sliderElement.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 1,
-        },
-        step: 0.1,
-        start: 1,
-      });
+      setSliderOptions(DEFAULT_MIN_RANGE_VALUE, DEFAULT_MAX_RANGE_VALUE, DEFAULT_STEP_VALUE, DEFAULT_START_VALUE);
       connectSliderWithInput(currentEffect);
       break;
     case PhotoEffect.SEPIA:
-      sliderElement.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 1,
-        },
-        step: 0.1,
-        start: 1,
-      });
+      setSliderOptions(DEFAULT_MIN_RANGE_VALUE, DEFAULT_MAX_RANGE_VALUE, DEFAULT_STEP_VALUE, DEFAULT_START_VALUE);
       connectSliderWithInput(currentEffect);
       break;
     case PhotoEffect.MARVIN:
-      sliderElement.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 100,
-        },
-        step: 1,
-        start: 100,
-      });
+      setSliderOptions(DEFAULT_MIN_RANGE_VALUE, MARVIN_MAX_RANGE_VALUE, MARVIN_STEP_VALUE, MARVIN_START_VALUE);
       connectSliderWithInput(currentEffect);
       break;
     case PhotoEffect.PHOBOS:
-      sliderElement.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 3,
-        },
-        step: 0.1,
-        start: 3,
-      });
+      setSliderOptions(DEFAULT_MIN_RANGE_VALUE, PHOBOS_MAX_RANGE_VALUE, DEFAULT_STEP_VALUE, PHOBOS_START_VALUE);
       connectSliderWithInput(currentEffect);
       break;
     case PhotoEffect.HEAT:
-      sliderElement.noUiSlider.updateOptions({
-        range: {
-          min: 1,
-          max: 3,
-        },
-        step: 0.1,
-        start: 3,
-      });
+      setSliderOptions(HEAT_MIN_RANGE_VALUE, HEAT_MAX_RANGE_VALUE, DEFAULT_STEP_VALUE, HEAT_START_VALUE);
       connectSliderWithInput(currentEffect);
       break;
     case PhotoEffect.NONE:
       imgUploadPreview.style.filter = '';
       sliderElement.style.display = 'none';
+      sliderElementContainer.classList.add('hidden');
       break;
   }
 };
@@ -152,6 +142,7 @@ const resetImgUploadSettings = () => {
   const classNames = imgUploadPreview.classList[0];
   imgUploadPreview.classList.remove(`${ classNames }`);
   sliderElement.style.display = 'none';
+  sliderElementContainer.classList.add('hidden');
 };
 
 export { inputEffectsRadioElementsHandler, resetImgUploadSettings };

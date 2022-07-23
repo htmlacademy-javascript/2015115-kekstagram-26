@@ -8,10 +8,10 @@ const imgFiltersButtons = imgFiltersForm.querySelectorAll('.img-filters__button'
 const RANDOM_PICTURES_NUMBER = 10;
 const RERENDER_DELAY = 500;
 
-let forFiltersData;
+let filtersData;
 
 const getDataForFilters = (data) => {
-  forFiltersData = data;
+  filtersData = data;
 };
 
 const removePictureNodesFromFilter = () => {
@@ -26,15 +26,15 @@ const imgFiltersButtonsChangeHandler = (evt) => {
   switch (currentButton.id) {
     case 'filter-random':
       removePictureNodesFromFilter();
-      debounce(getThumbnailRenderedPictures( shuffle(forFiltersData).slice(0, RANDOM_PICTURES_NUMBER) ), RERENDER_DELAY);
+      debounce(getThumbnailRenderedPictures( shuffle(filtersData.slice() ).slice(0, RANDOM_PICTURES_NUMBER) ), RERENDER_DELAY);
       break;
     case 'filter-discussed':
       removePictureNodesFromFilter();
-      debounce(getThumbnailRenderedPictures( forFiltersData.slice().sort( (a,b) => b.comments.length - a.comments.length) ), RERENDER_DELAY);
+      debounce(getThumbnailRenderedPictures( filtersData.slice().sort( (a,b) => b.comments.length - a.comments.length) ), RERENDER_DELAY);
       break;
     default:
       removePictureNodesFromFilter();
-      debounce(getThumbnailRenderedPictures(forFiltersData), RERENDER_DELAY);
+      debounce(getThumbnailRenderedPictures(filtersData), RERENDER_DELAY);
       break;
   }
 };
@@ -55,4 +55,3 @@ const useFilters = () => {
 
 export { showFilters, useFilters, getDataForFilters };
 
-/* debounce(getThumbnailRenderedPictures( shuffle(forFiltersData.slice(RANDOM_PICTURES_NUMBER) )  ), RERENDER_DELAY); */
